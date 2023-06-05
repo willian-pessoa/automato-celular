@@ -1,15 +1,4 @@
-type AutomatoMatriz = Array<Array<number>>;
-
-interface AutomatoRules {
-  isLive: {
-    dies: { alive: Array<number> };
-    lives: { alive: Array<number> };
-  };
-  isDead: {
-    dies: { dead: Array<number> };
-    lives: { dead: Array<number> };
-  };
-}
+import { AutomatoMatriz, AutomatoRules } from "./automatoCelularTypes";
 
 export default class AutomatoCelular {
   _GEN: AutomatoMatriz;

@@ -1,0 +1,10 @@
+.canvas {
+  width: 600px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+
+  .row{
+    display: flex;
+  }
+}
