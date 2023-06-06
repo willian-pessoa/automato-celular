@@ -23,10 +23,10 @@ const MATRIZ = [
 ];
 
 function App() {
-  const [width, setWidth] = useState(5);
-  const [height, setHeight] = useState(4);
+  const [width, setWidth] = useState(10);
+  const [height, setHeight] = useState(3);
   const [automato, setAutomato] = useState(
-    new AutomatoCelular(width, height, RULE, MATRIZ)
+    new AutomatoCelular(width, height, RULE)
   );
   const [countGenerations, setCountGenerations] = useState(0);
   const [automatoLoop, setAutomatoLoop] = useState(false);
@@ -44,6 +44,9 @@ function App() {
     if (!automatoLoop) clearInterval(automatoInterval);
     return () => clearInterval(automatoInterval);
   }, [automato, countGenerations, height, width, automatoLoop]);
+
+  automato.createRandomGen()
+  console.log(automato.getGen())
 
   return (
     <div className="App">

@@ -20,11 +20,11 @@ export default class AutomatoCelular {
     this._width = width;
   }
 
-  _stateToDie(i: number, j: number) {
+  stateToDie(i: number, j: number) {
     this._GEN[i][j] = 0;
   }
 
-  _stateToLive(i: number, j: number) {
+  stateToLive(i: number, j: number) {
     this._GEN[i][j] = 1;
   }
 
@@ -63,15 +63,15 @@ export default class AutomatoCelular {
 
     if (state) {
       if (this._RULES.isLive.lives.alive.includes(alive)) {
-        this._stateToLive(i, j);
+        this.stateToLive(i, j);
       } else {
-        this._stateToDie(i, j);
+        this.stateToDie(i, j);
       }
     } else {
       if (this._RULES.isDead.lives.dead.includes(dead)) {
-        this._stateToLive(i, j);
+        this.stateToLive(i, j);
       } else {
-        this._stateToDie(i, j);
+        this.stateToDie(i, j);
       }
     }
   }
@@ -89,9 +89,9 @@ export default class AutomatoCelular {
       }
     }
     const M = [];
-    for (let i = 0; i < width; i++) {
+    for (let i = 0; i < height; i++) {
       const l = [];
-      for (let j = 0; j < height; j++) {
+      for (let j = 0; j < width; j++) {
         l.push(0);
       }
       M.push(l);
@@ -104,6 +104,16 @@ export default class AutomatoCelular {
     for (let i = 0; i < this._height; i++) {
       for (let j = 0; j < this._width; j++) {
         this._automato(i, j, this._PREV_GEN[i][j]);
+      }
+    }
+  }
+
+  createRandomGen() {
+    this._PREV_GEN = JSON.parse(JSON.stringify(this._GEN));
+    for (let i = 0; i < this._height; i++) {
+      for (let j = 0; j < this._width; j++) {
+        const turnToLive = 0.35 > Math.random();
+        if (turnToLive) this.stateToLive(i, j);
       }
     }
   }
