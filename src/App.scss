@@ -1,0 +1,18 @@
+.App {
+  .automato-container {
+    display: flex;
+
+    .input-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      .buttons-container {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        width: 40%;
+      }
+    }
+  }
+}

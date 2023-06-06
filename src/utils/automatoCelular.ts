@@ -37,6 +37,21 @@ export default class AutomatoCelular {
     return this._GEN;
   }
 
+  getRandomGen(): AutomatoMatriz {
+    this._PREV_GEN = JSON.parse(JSON.stringify(this._GEN));
+    for (let i = 0; i < this._height; i++) {
+      for (let j = 0; j < this._width; j++) {
+        const turnToLive = 0.35 > Math.random();
+        if (turnToLive) {
+          this.stateToLive(i, j);
+        } else {
+          this.stateToDie(i, j);
+        }
+      }
+    }
+    return this._GEN;
+  }
+
   _automato(i: number, j: number, state: number) {
     let alive = 0;
     let dead = 0;
@@ -104,16 +119,6 @@ export default class AutomatoCelular {
     for (let i = 0; i < this._height; i++) {
       for (let j = 0; j < this._width; j++) {
         this._automato(i, j, this._PREV_GEN[i][j]);
-      }
-    }
-  }
-
-  createRandomGen() {
-    this._PREV_GEN = JSON.parse(JSON.stringify(this._GEN));
-    for (let i = 0; i < this._height; i++) {
-      for (let j = 0; j < this._width; j++) {
-        const turnToLive = 0.35 > Math.random();
-        if (turnToLive) this.stateToLive(i, j);
       }
     }
   }

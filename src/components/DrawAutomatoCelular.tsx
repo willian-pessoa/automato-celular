@@ -10,8 +10,8 @@ const Cell = ({ state }: { state: number }) => {
     <div
       className="cell"
       style={{
-        height: "2rem",
-        width: "2rem",
+        height: "1.5rem",
+        width: "1.5rem",
         border: "0.5px solid #051428",
         backgroundColor: state === 0 ? "antiquewhite" : "#f0c284",
       }}

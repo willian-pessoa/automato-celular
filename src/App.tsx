@@ -6,25 +6,18 @@ import DrawAutomatoCelular from "./components/DrawAutomatoCelular";
 
 const RULE = {
   isLive: {
-    dies: { alive: [0, 1, 2, 3, 6, 7] },
-    lives: { alive: [4, 5, 6, 8] },
+    dies: { alive: [0, 1, 2, 3, 4] },
+    lives: { alive: [5, 6, 7, 8] },
   },
   isDead: {
-    dies: { dead: [0, 1, 5, 6] },
-    lives: { dead: [2, 3, 4, 7, 8] },
+    dies: { dead: [0, 1, 2, 3, 4] },
+    lives: { dead: [5, 6, 7, 8] },
   },
 };
 
-const MATRIZ = [
-  [0, 0, 0, 1, 0],
-  [0, 1, 1, 0, 1],
-  [1, 0, 0, 0, 0],
-  [0, 1, 1, 0, 1],
-];
-
 function App() {
-  const [width, setWidth] = useState(10);
-  const [height, setHeight] = useState(3);
+  const [width, setWidth] = useState(25);
+  const [height, setHeight] = useState(20);
   const [automato, setAutomato] = useState(
     new AutomatoCelular(width, height, RULE)
   );
@@ -32,7 +25,7 @@ function App() {
   const [automatoLoop, setAutomatoLoop] = useState(false);
 
   useEffect(() => {
-    const automatoDelay = 200;
+    const automatoDelay = 60;
 
     const automatoInterval: NodeJS.Timer = setInterval(() => {
       const newAutomato = automato.nextGen();
@@ -45,12 +38,74 @@ function App() {
     return () => clearInterval(automatoInterval);
   }, [automato, countGenerations, height, width, automatoLoop]);
 
-  automato.createRandomGen()
-  console.log(automato.getGen())
+  const handleGenerateRandomGen = () => {
+    setCountGenerations(0)
+    const newAutomato = automato.getRandomGen();
+    setAutomato(new AutomatoCelular(width, height, RULE, newAutomato));
+  };
 
   return (
     <div className="App">
-      <DrawAutomatoCelular matriz={automato.getGen()} />
+      <div className="automato-container">
+        <DrawAutomatoCelular matriz={automato.getGen()} />
+        <div className="input-container">
+          <div className="dimensions-container">
+            <h2>Grade</h2>
+            <input
+              type="number"
+              min="3"
+              max="25"
+              onKeyDown={(event) => {
+                event.preventDefault();
+              }}
+              onChange={(e) => setWidth(Number(e.target.value))}
+              value={width}
+            />
+            x
+            <input
+              type="number"
+              min="3"
+              max="20"
+              onKeyDown={(event) => {
+                event.preventDefault();
+              }}
+              onChange={(e) => setHeight(Number(e.target.value))}
+              value={height}
+            />
+            <button
+              onClick={() =>
+                setAutomato(new AutomatoCelular(width, height, RULE))
+              }
+            >
+              Gerar
+            </button>
+          </div>
+          <div className="info-containter">
+            <p>Clique nas celulas para alterar seu estado</p>
+          </div>
+          <div className="buttons-container">
+            <button
+              onClick={() => handleGenerateRandomGen()}
+              disabled={automatoLoop}
+            >
+              Estado Aleatorio
+            </button>
+            <button
+              onClick={() => setAutomatoLoop(true)}
+              disabled={automatoLoop}
+            >
+              Começar Simulação
+            </button>
+            <button
+              onClick={() => setAutomatoLoop(false)}
+              disabled={!automatoLoop}
+            >
+              Parar Simulação
+            </button>
+          </div>
+          <h3>Generation: {countGenerations}</h3>
+        </div>
+      </div>
     </div>
   );
 }
