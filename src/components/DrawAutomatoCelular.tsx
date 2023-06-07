@@ -8,7 +8,7 @@ import {
 } from "react";
 import "./DrawAutomatoCelular.scss";
 
-interface DrawAutomatoProps extends ComponentPropsWithoutRef<"button"> {
+interface DrawAutomatoProps {
   matriz: AutomatoMatriz;
   automato: AutomatoCelular;
   isRunning: boolean;
@@ -18,14 +18,12 @@ interface DrawAutomatoProps extends ComponentPropsWithoutRef<"button"> {
   rule: AutomatoRules;
 }
 
-const Cell = ({
-  isRunning,
-  state,
-  ...props
-}: {
+interface CellProps extends ComponentPropsWithoutRef<"input"> {
   isRunning: boolean;
   state: number;
-}) => {
+}
+
+const Cell = ({ isRunning, state, ...props }: CellProps) => {
   return (
     <div
       {...props}
@@ -79,7 +77,9 @@ const DrawAutomatoCelular = ({
                   state={cell}
                   key={`(${i},${j})`}
                   onClick={() => handleClickCell(i, j)}
-                  onMouseEnter={tracking ? () => handleCellState(i, j) : null}
+                  onMouseEnter={
+                    tracking ? () => handleCellState(i, j) : () => null
+                  }
                   isRunning={isRunning}
                 />
               );
