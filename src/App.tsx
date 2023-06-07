@@ -36,7 +36,7 @@ function App() {
 
     if (!automatoLoop) clearInterval(automatoInterval);
     return () => clearInterval(automatoInterval);
-  }, [automato, countGenerations, height, width, automatoLoop]);
+  }, [automato, countGenerations, automatoLoop]);
 
   const handleGenerateRandomGen = () => {
     setCountGenerations(0);
@@ -68,6 +68,7 @@ function App() {
               }}
               onChange={(e) => setWidth(Number(e.target.value))}
               value={width}
+              disabled={automatoLoop}
             />
             x
             <input
@@ -79,11 +80,13 @@ function App() {
               }}
               onChange={(e) => setHeight(Number(e.target.value))}
               value={height}
+              disabled={automatoLoop}
             />
             <button
               onClick={() =>
                 setAutomato(new AutomatoCelular(width, height, RULE))
               }
+              disabled={automatoLoop}
             >
               Gerar
             </button>
