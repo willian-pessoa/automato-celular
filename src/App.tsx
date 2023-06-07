@@ -39,7 +39,7 @@ function App() {
   }, [automato, countGenerations, height, width, automatoLoop]);
 
   const handleGenerateRandomGen = () => {
-    setCountGenerations(0)
+    setCountGenerations(0);
     const newAutomato = automato.getRandomGen();
     setAutomato(new AutomatoCelular(width, height, RULE, newAutomato));
   };
@@ -47,7 +47,15 @@ function App() {
   return (
     <div className="App">
       <div className="automato-container">
-        <DrawAutomatoCelular matriz={automato.getGen()} />
+        <DrawAutomatoCelular
+          matriz={automato.getGen()}
+          automato={automato}
+          isRunning={automatoLoop}
+          width={width}
+          height={height}
+          setAutomato={setAutomato}
+          rule={RULE}
+        />
         <div className="input-container">
           <div className="dimensions-container">
             <h2>Grade</h2>

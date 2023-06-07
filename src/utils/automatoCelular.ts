@@ -22,10 +22,12 @@ export default class AutomatoCelular {
 
   stateToDie(i: number, j: number) {
     this._GEN[i][j] = 0;
+    return this._GEN;
   }
 
   stateToLive(i: number, j: number) {
     this._GEN[i][j] = 1;
+    return this._GEN;
   }
 
   getGen(): AutomatoMatriz {
