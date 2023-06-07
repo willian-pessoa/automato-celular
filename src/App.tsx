@@ -25,6 +25,7 @@ function App() {
   const [automatoLoop, setAutomatoLoop] = useState(false);
 
   useEffect(() => {
+    if (!automatoLoop && countGenerations === 0) return;
     const automatoDelay = 60;
 
     const automatoInterval: NodeJS.Timer = setInterval(() => {
@@ -36,7 +37,12 @@ function App() {
 
     if (!automatoLoop) clearInterval(automatoInterval);
     return () => clearInterval(automatoInterval);
-  }, [automato, countGenerations, automatoLoop]);
+  }, [automato, countGenerations, height, width, automatoLoop]);
+
+  const handleGenerateGrade = () => {
+    setCountGenerations(0);
+    setAutomato(new AutomatoCelular(width, height, RULE));
+  };
 
   const handleGenerateRandomGen = () => {
     setCountGenerations(0);
@@ -83,9 +89,7 @@ function App() {
               disabled={automatoLoop}
             />
             <button
-              onClick={() =>
-                setAutomato(new AutomatoCelular(width, height, RULE))
-              }
+              onClick={() => handleGenerateGrade()}
               disabled={automatoLoop}
             >
               Gerar
@@ -114,7 +118,7 @@ function App() {
               Parar Simulação
             </button>
           </div>
-          <h3>Generation: {countGenerations}</h3>
+          <h3>Geração: {countGenerations}</h3>
         </div>
       </div>
     </div>
