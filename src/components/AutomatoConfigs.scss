@@ -1,0 +1,35 @@
+.automato-configs {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+
+  .alive-cell__container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .dies-if,
+    .lives-if {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .dies-if-x-alive,
+    .lives-if-x-alive {
+      display: flex;
+      gap: 0.5rem;
+
+      .draggable-item {
+        border-radius: 50%;
+        width: 1.5rem;
+        height: 1.5rem;
+        border: 1px solid black;
+        text-align: center;
+        padding-top: 2px;
+        background-color: antiquewhite;
+        cursor: grab;
+      }
+    }
+  }
+}
