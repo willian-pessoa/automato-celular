@@ -85,7 +85,7 @@ export default class AutomatoCelular {
         this.stateToDie(i, j);
       }
     } else {
-      if (this._RULES.isDead.lives.dead.includes(dead)) {
+      if (this._RULES.isDead.lives.alive.includes(dead)) {
         this.stateToLive(i, j);
       } else {
         this.stateToDie(i, j);
