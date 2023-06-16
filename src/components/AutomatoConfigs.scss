@@ -17,8 +17,10 @@
 
     .dies-if-x-alive,
     .lives-if-x-alive {
+      padding: 0.5rem;
       display: flex;
       gap: 0.5rem;
+      border: 1px solid black;
 
       .draggable-item {
         border-radius: 50%;
