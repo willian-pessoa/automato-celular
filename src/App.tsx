@@ -8,12 +8,12 @@ import { AutomatoRules } from "./utils/automatoCelularTypes";
 
 const RULE: AutomatoRules = {
   isLive: {
-    dies: { alive: [0, 1, 2, 3, 4] },
-    lives: { alive: [5, 6, 7, 8] },
+    dies: { alive: [0, 1, 7, 8] },
+    lives: { alive: [3, 4, 5, 6] },
   },
   isDead: {
-    dies: { alive: [0, 1, 2, 3, 4] },
-    lives: { alive: [5, 6, 7, 8] },
+    dies: { alive: [8, 7, 6, 0, 1, 2] },
+    lives: { alive: [3, 4, 5] },
   },
 };
 
