@@ -6,7 +6,7 @@ export interface AutomatoRules {
     lives: { alive: Array<number> };
   };
   isDead: {
-    dies: { dead: Array<number> };
-    lives: { dead: Array<number> };
+    dies: { alive: Array<number> };
+    lives: { alive: Array<number> };
   };
 }

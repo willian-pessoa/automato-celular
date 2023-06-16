@@ -21,8 +21,8 @@ const RULE = {
     lives: { alive: [5, 6, 7, 8] },
   },
   isDead: {
-    dies: { dead: [5, 6, 7, 8] },
-    lives: { dead: [0, 1, 2, 3, 4] },
+    dies: { alive: [5, 6, 7, 8] },
+    lives: { alive: [0, 1, 2, 3, 4] },
   },
 };
 

@@ -37,7 +37,6 @@ const AutomatoConfigs = ({ rule, setRule }: AutomatoConfigsProps) => {
       "🚀 ~ file: AutomatoConfigs.tsx:35 ~ AutomatoConfigs ~ tempRule:",
       tempRule
     );
-
     setRule(tempRule);
     setReRender((prev) => !prev);
     e.stopPropagation();
@@ -46,6 +45,9 @@ const AutomatoConfigs = ({ rule, setRule }: AutomatoConfigsProps) => {
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
   };
+
+  console.log(rule);
+  console.log(reRender)
 
   return (
     <div className="automato-configs">
@@ -104,6 +106,56 @@ const AutomatoConfigs = ({ rule, setRule }: AutomatoConfigsProps) => {
       </div>
       <div className="dead-cell__container">
         <h4>Células Mortas</h4>
+        <div className="dies-if">
+          <h5>Morre Se:</h5>
+          <div
+            className="dies-if-x-alive"
+            onDragOver={(e) => handleDragOver(e)}
+            onDrop={(e) => handleDrop(e, "isDead", "dies")}
+          >
+            {rule.isDead.dies.alive.map((alive, idx) => {
+              return (
+                <div
+                  className="draggable-item"
+                  id={`live__${alive}`}
+                  key={alive}
+                  draggable
+                  onDragStart={(e) =>
+                    handleOnDragStart(e, alive, "isDead", "dies", idx)
+                  }
+                >
+                  {alive}
+                </div>
+              );
+            })}
+          </div>
+          <h5>células vivas</h5>
+        </div>
+        <div className="lives-if">
+          <h5>Vive Se:</h5>
+          <div
+            className="lives-if-x-alive"
+            onDragOver={(e) => handleDragOver(e)}
+            onDrop={(e) => handleDrop(e, "isDead", "lives")}
+          >
+            {rule.isDead.lives.alive.map((alive, idx) => {
+              return (
+                <div
+                  className="draggable-item"
+                  id={`live__${alive}`}
+                  key={alive}
+                  draggable
+                  onDragStart={(e) =>
+                    handleOnDragStart(e, alive, "isDead", "lives", idx)
+                  }
+                >
+                  {alive}
+                </div>
+              );
+            })}
+          </div>
+          <h5>células vivas</h5>
+        </div>
       </div>
     </div>
   );

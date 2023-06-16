@@ -12,8 +12,8 @@ const RULE: AutomatoRules = {
     lives: { alive: [5, 6, 7, 8] },
   },
   isDead: {
-    dies: { dead: [0, 1, 2, 3, 4] },
-    lives: { dead: [5, 6, 7, 8] },
+    dies: { alive: [0, 1, 2, 3, 4] },
+    lives: { alive: [5, 6, 7, 8] },
   },
 };
 
